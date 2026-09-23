@@ -1,0 +1,25 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Add a unique task to delete
+- tapOn: "Enter new task..."
+- inputText: "Task to be Permanently Removed"
+- hideKeyboard:
+    optional: true
+- tapOn: "Add Task"
+
+- extendedWaitUntil:
+    visible: "Task to be Permanently Removed"
+    timeout: 10000
+
+# 2. Tap Delete Button
+- tapOn: ".*(delete_Task to be Permanently Removed|❌).*"
+
+# 3. Dual Confirmation Check for Deletion:
+# Confirmation 1: Task text is permanently removed from the list
+- assertNotVisible: "Task to be Permanently Removed"
+
+# Confirmation 2: Notification banner confirms task deletion
+- assertVisible: ".*(Event: Deleted task|Deleted|Removed|🔔).*"

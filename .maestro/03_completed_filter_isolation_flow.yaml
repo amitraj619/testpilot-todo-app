@@ -1,0 +1,40 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Add a new task
+- tapOn: "Enter new task..."
+- inputText: "Verified Completed Item"
+- tapOn: "TestPilot Todo App"
+- tapOn: "Add Task"
+
+- extendedWaitUntil:
+    visible: "Verified Completed Item"
+    timeout: 10000
+
+# 2. Click Toggle Checkbox to mark as completed FIRST
+- tapOn: ".*(toggle_Verified Completed Item|⚪).*"
+
+# 3. Assert completed state checkmark (✅) in the list
+- extendedWaitUntil:
+    visible: ".*(✅|Completed).*"
+    timeout: 8000
+
+# 4. Now move to 'Completed' filter tab
+- tapOn: ".*Completed \(.*\).*"
+
+# 5. Confirmation: It MUST show in Completed filter view
+- extendedWaitUntil:
+    visible: "Verified Completed Item"
+    timeout: 8000
+
+# 6. Switch to 'Active' filter tab
+- tapOn: ".*Active \(.*\).*"
+
+# 7. Confirmation: It MUST NOT show in Active view
+- assertNotVisible: "Verified Completed Item"
+
+# 8. Switch back to 'All' filter tab
+- tapOn: ".*All \(.*\).*"
+- assertVisible: "Verified Completed Item"

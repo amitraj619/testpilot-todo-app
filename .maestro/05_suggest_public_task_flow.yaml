@@ -1,0 +1,12 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Tap 'Suggest Public Task' button
+- tapOn: ".*Suggest Public Task.*"
+
+# 2. Assert Event Notification & Task List updated
+- extendedWaitUntil:
+    visible: ".*(Event: Created task|Added:|🔔).*"
+    timeout: 10000

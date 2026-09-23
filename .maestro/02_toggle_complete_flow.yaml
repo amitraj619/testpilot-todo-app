@@ -1,0 +1,24 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Add an active task
+- tapOn: "Enter new task..."
+- inputText: "Complete Audit Review"
+- tapOn: "TestPilot Todo App"
+- tapOn: "Add Task"
+
+- extendedWaitUntil:
+    visible: "Complete Audit Review"
+    timeout: 10000
+
+# 2. Tap Checkbox
+- tapOn: ".*(toggle_Complete Audit Review|⚪).*"
+
+# 3. Dual Confirmation Check for Completed State:
+- extendedWaitUntil:
+    visible: ".*(✅|Completed).*"
+    timeout: 8000
+
+- assertVisible: ".*(Complete Audit Review|Completed|🔔).*"

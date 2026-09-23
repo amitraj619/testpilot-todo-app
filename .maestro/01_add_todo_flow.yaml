@@ -1,0 +1,23 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Assert initial Header
+- assertVisible: "TestPilot Todo App"
+
+# 2. Add new task
+- tapOn: "Enter new task..."
+- inputText: "Verify End-to-End Task Creation"
+- hideKeyboard:
+    optional: true
+- tapOn: "Add Task"
+
+# 3. Dual Confirmation Check:
+# Confirmation 1: Task text is visible in the list
+- extendedWaitUntil:
+    visible: "Verify End-to-End Task Creation"
+    timeout: 10000
+
+# Confirmation 2: Notification banner confirmation is displayed
+- assertVisible: ".*(Event: Created task|Added:.*Verify End-to-End Task Creation|🔔).*"

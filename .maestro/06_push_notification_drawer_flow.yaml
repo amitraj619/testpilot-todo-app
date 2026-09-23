@@ -1,0 +1,19 @@
+appId: ${APP_ID}
+---
+- clearState
+- launchApp
+
+# 1. Add task to trigger native system push notification
+- tapOn: "Enter new task..."
+- inputText: "Verify System Push Notification"
+- hideKeyboard
+- tapOn: "Add Task"
+
+# 2. Open Android System Notification Shade
+- openNotifications
+
+# 3. Assert Push Notification in system shade
+- assertVisible: ".*(Task Created|Added:.*Verify System Push Notification|TestPilot).* "
+
+# 4. Collapse Notification Shade (Swipe back)
+- back
