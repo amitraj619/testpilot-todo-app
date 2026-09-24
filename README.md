@@ -40,8 +40,8 @@ A modern, production-grade React Native Todo mobile application built for automa
 
 ```bash
 # Clone the repository
-git clone https://github.com/Amitraj797/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/amitraj619/testpilot-todo-app.git
+cd testpilot-todo-app
 
 # Install JavaScript dependencies
 npm install
